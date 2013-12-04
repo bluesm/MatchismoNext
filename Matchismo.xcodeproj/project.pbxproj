@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E53B807E1849048400B18C4C /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = E53B807D1849048400B18C4C /* Deck.m */; };
 		E53B8081184905C400B18C4C /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = E53B8080184905C400B18C4C /* Card.m */; };
+		E53C5159184DDEE700F784D8 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = E53C5158184DDEE700F784D8 /* CardMatchingGame.m */; };
 		E5527AE8184AB21F0046ABF3 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = E5527AE7184AB21F0046ABF3 /* PlayingCard.m */; };
 		E5527AEB184ABDCF0046ABF3 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = E5527AEA184ABDCF0046ABF3 /* PlayingCardDeck.m */; };
 		E5B31279184B8A6D0032C3AE /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B31278184B8A6D0032C3AE /* TestClass.m */; };
@@ -43,6 +44,8 @@
 		E53B807D1849048400B18C4C /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
 		E53B807F184905C400B18C4C /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		E53B8080184905C400B18C4C /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		E53C5157184DDEE700F784D8 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMatchingGame.h; sourceTree = "<group>"; };
+		E53C5158184DDEE700F784D8 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGame.m; sourceTree = "<group>"; };
 		E5527AE6184AB21F0046ABF3 /* PlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCard.h; sourceTree = "<group>"; };
 		E5527AE7184AB21F0046ABF3 /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCard.m; sourceTree = "<group>"; };
 		E5527AE9184ABDCF0046ABF3 /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeck.h; sourceTree = "<group>"; };
@@ -94,6 +97,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E53C515A184DDEFA00F784D8 /* CardMatchingGame */ = {
+			isa = PBXGroup;
+			children = (
+				E53C5157184DDEE700F784D8 /* CardMatchingGame.h */,
+				E53C5158184DDEE700F784D8 /* CardMatchingGame.m */,
+			);
+			name = CardMatchingGame;
+			path = Matchismo;
+			sourceTree = "<group>";
+		};
+		E53C515B184DDF1500F784D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E53C515A184DDEFA00F784D8 /* CardMatchingGame */,
+				E5B3127A184B8A720032C3AE /* TestClass */,
+				E5853FF8184B5159009EC842 /* Card */,
+				E5853FF9184B5168009EC842 /* PlayingCardDeck */,
+				E5853FF6184B513A009EC842 /* PlayingCard */,
+				E5853FFA184B517F009EC842 /* Deck */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		E5853FF6184B513A009EC842 /* PlayingCard */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,11 +169,7 @@
 		E5FF22561842A6BF00FDDFDB = {
 			isa = PBXGroup;
 			children = (
-				E5B3127A184B8A720032C3AE /* TestClass */,
-				E5853FF8184B5159009EC842 /* Card */,
-				E5853FF9184B5168009EC842 /* PlayingCardDeck */,
-				E5853FF6184B513A009EC842 /* PlayingCard */,
-				E5853FFA184B517F009EC842 /* Deck */,
+				E53C515B184DDF1500F784D8 /* Model */,
 				E5FF22681842A6C000FDDFDB /* Matchismo */,
 				E5FF22871842A6C000FDDFDB /* MatchismoTests */,
 				E5FF22611842A6C000FDDFDB /* Frameworks */,
@@ -319,6 +341,7 @@
 				E5527AE8184AB21F0046ABF3 /* PlayingCard.m in Sources */,
 				E53B8081184905C400B18C4C /* Card.m in Sources */,
 				E53B807E1849048400B18C4C /* Deck.m in Sources */,
+				E53C5159184DDEE700F784D8 /* CardMatchingGame.m in Sources */,
 				E5FF22731842A6C000FDDFDB /* CardGameAppDelegate.m in Sources */,
 				E5B31279184B8A6D0032C3AE /* TestClass.m in Sources */,
 				E5527AEB184ABDCF0046ABF3 /* PlayingCardDeck.m in Sources */,

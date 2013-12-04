@@ -10,11 +10,13 @@
 #import "Deck.h"
 #import "PlayingCardDeck.h"
 #import "TestClass.h"
+#import "CardMatchingGame.h"
 
 @interface CardGameViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak, nonatomic) IBOutlet UIButton *card;
-@property (nonatomic) int clickCount;
+
+@property (nonatomic, strong) CardMatchingGame *game;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardsButton;
 
 @property (strong, nonatomic) Deck* deck;
 
@@ -22,8 +24,18 @@
 
 @implementation CardGameViewController
 
-//static NSString * noCardMessage2 = @"No c";
+//static NSString * noCardMessage2 = @"No c"; fasdfasdf
 
+- (CardMatchingGame *)game {
+    if(!_game) {
+        _game = [[CardMatchingGame alloc] initWithCardCount:0 usingDeck:[self createDeck]];
+    }
+    return _game;
+}
+
+- (Deck *) createDeck {
+    return [[PlayingCardDeck alloc] init];
+}
 - (Deck *) deck {
     if(!_deck) {
         _deck = [[PlayingCardDeck alloc] init];
@@ -31,33 +43,42 @@
     return _deck;
 }
 
-- (void) setClickCount:(int)clickCount {
-    _clickCount = clickCount;
-    NSLog(@"%d", self.clickCount);
-    self.countLabel.text = [NSString stringWithFormat:@"%d", self.clickCount];
-}
-
 - (IBAction)cardTouched:(UIButton *)sender {
     
-    if(sender.currentTitle.length != 0) {
-        UIImage *cardImage = [UIImage imageNamed:@"CardBackLogo"];
-        [sender setBackgroundImage:cardImage forState:UIControlStateNormal];
-        [sender setTitle:@"" forState:UIControlStateNormal];
-    } else {
-        UIImage *cardImage = [UIImage imageNamed:@"CardFront"];
-        [sender setBackgroundImage:cardImage forState:UIControlStateNormal];
+    
+    UIImage* cardImage = nil;
+    NSString* cardTitle =  nil;
+    if(sender.currentTitle.length == 0) {
         Card* rCard = [self.deck drawRandomCard];
-        NSString *cardString = nil;
         if(rCard) {
-            cardString = rCard.contents;
-        } else {
-            [sender removeFromSuperview]; // removes the deck of card
-        }
-        
-        [sender setTitle:cardString forState:UIControlStateNormal];
+            cardImage = [UIImage imageNamed:@"CardFront"];
+            cardTitle = rCard.contents;        }
+    } else {
+        cardImage = [UIImage imageNamed:@"CardBackLogo"];
+        cardTitle = @"";
+    }
+
+    if(cardImage) {  // either one more "if" or two times "self.clickCount" ... There is no other option.
+        [sender setBackgroundImage:cardImage forState:UIControlStateNormal];
+        [sender setTitle:cardTitle forState:UIControlStateNormal];
     }
     
-    self.clickCount += 1;
+    NSLog(@"%d", [self.cardsButton count]);
+    int l = [self.cardsButton count];
+    for( int i = 0; i < l; i++) {
+        [self.cardsButton[i] setTitle:[NSString stringWithFormat:@"%d", i]];
+        NSLog(@"My i : %d", i);
+        
+        if(self.cardsButton[i] == nil) {
+            NSLog(@"IS nil");
+            
+        } else {
+            NSLog(@"Is not nil");
+            NSString* s = @"my string";
+            NSLog(s);
+            [self.cardsButton[i] setTitle:s];
+        }
+    }
     
 }
 
