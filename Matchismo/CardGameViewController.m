@@ -13,22 +13,47 @@
 #import "CardMatchingGame.h"
 
 @interface CardGameViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *card;
 
 @property (nonatomic, strong) CardMatchingGame *game;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardsButton;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardsButtons;
+
 
 @property (strong, nonatomic) Deck* deck;
+
+@property (weak, nonatomic) IBOutlet UILabel *actionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *twoOrTreeMatchSwichSegmentControl;
+@property (strong, nonatomic) CardMatchingGame* a;
+
 
 @end
 
 @implementation CardGameViewController
 
 //static NSString * noCardMessage2 = @"No c"; fasdfasdf
+- (IBAction)dialAgain:(id)sender {
+    //[_game release];
+    [self.game redialWithDeck:[self createDeck]];
+   
+    self.twoOrTreeMatchSwichSegmentControl.enabled = YES;
+    //_game = [[CardMatchingGame alloc] initWithCardCount:[self.cardsButtons count] usingDeck:[self createDeck]];
+    [self updateUI];
+}
+- (IBAction)modeOfGameChanged:(UISegmentedControl *)sender {
+    
+                    
+    [self.game setMode:(sender.selectedSegmentIndex + 1)]; // Why sender.selectedSegmentIndex is not NSUInteger ?
+    //NSLog(@"%d", sender.selectedSegmentIndex);
+}
 
+static NSUInteger initialMode = 1;
+
+
+//NSArray*  const abc = @[@"FirstConstant",@"abc"];
 - (CardMatchingGame *)game {
     if(!_game) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:0 usingDeck:[self createDeck]];
+        //_game = [CardMatchingGame alloc] init
+        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardsButtons count] mode:initialMode usingDeck:[self createDeck]];
     }
     return _game;
 }
@@ -36,51 +61,41 @@
 - (Deck *) createDeck {
     return [[PlayingCardDeck alloc] init];
 }
-- (Deck *) deck {
-    if(!_deck) {
-        _deck = [[PlayingCardDeck alloc] init];
-    }
-    return _deck;
-}
+
 
 - (IBAction)cardTouched:(UIButton *)sender {
+    self.twoOrTreeMatchSwichSegmentControl.enabled = NO; // how can I execute it just once ?... Overkill ?
+    int cardIndex = [self.cardsButtons indexOfObject:sender];//where this sending button is in array
+    [self.game chooseCardAtIndex:cardIndex];
+    [self updateUI];
     
-    
-    UIImage* cardImage = nil;
-    NSString* cardTitle =  nil;
-    if(sender.currentTitle.length == 0) {
-        Card* rCard = [self.deck drawRandomCard];
-        if(rCard) {
-            cardImage = [UIImage imageNamed:@"CardFront"];
-            cardTitle = rCard.contents;        }
-    } else {
-        cardImage = [UIImage imageNamed:@"CardBackLogo"];
-        cardTitle = @"";
-    }
-
-    if(cardImage) {  // either one more "if" or two times "self.clickCount" ... There is no other option.
-        [sender setBackgroundImage:cardImage forState:UIControlStateNormal];
-        [sender setTitle:cardTitle forState:UIControlStateNormal];
-    }
-    
-    NSLog(@"%d", [self.cardsButton count]);
-    int l = [self.cardsButton count];
-    for( int i = 0; i < l; i++) {
-        [self.cardsButton[i] setTitle:[NSString stringWithFormat:@"%d", i]];
-        NSLog(@"My i : %d", i);
-        
-        if(self.cardsButton[i] == nil) {
-            NSLog(@"IS nil");
-            
-        } else {
-            NSLog(@"Is not nil");
-            NSString* s = @"my string";
-            NSLog(s);
-            [self.cardsButton[i] setTitle:s];
-        }
-    }
     
 }
 
+- (void) updateUI {
+    self.actionLabel.text = self.game.lastActionDescription;
+    for(UIButton *cardButton in self.cardsButtons) { // change it to for loop
+        int index = [self.cardsButtons indexOfObject:cardButton];
+        
+        Card* card = [self.game cardAtIndex:index]; 
+        
+        [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
+        
+        [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
+        
+        cardButton.enabled = !card.isMatched; // if is matched then => we should disable it.
+
+    }
+    [self.scoreLabel setText:[NSString stringWithFormat:@"Score : %d",self.game.score]];
+}
+
+- (NSString *) titleForCard: (Card *)card {
+    return card.isChoosen ? card.contents : @"";
+}
+
+- (UIImage *)backgroundImageForCard:(Card *)card {
+    //NSLog(card ? @"not nil" : @"nil");
+    return [UIImage imageNamed: card.isChoosen ? @"CardFront" : @"CardBackLogo"];
+}
 
 @end

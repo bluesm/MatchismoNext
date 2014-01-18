@@ -61,7 +61,7 @@
 - (int)match:(NSArray *)cardArr {
     int score = 0;
     int k = self.returnSomething;
-    NSLog(@"%d",k);
+    NSLog(@"%d Should it be \"2\" ",k);
     
     for(Card *card in cardArr) {
         if([card.contents isEqualToString:self.contents]) {

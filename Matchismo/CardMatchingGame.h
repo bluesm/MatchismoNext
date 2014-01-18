@@ -10,12 +10,17 @@
 #import "Deck.h"
 @interface CardMatchingGame : NSObject
 // designed initializer
-- (instancetype) initWithCardCount:(NSUInteger)count
+- (instancetype) initWithCardCount:(NSUInteger)count mode:(NSUInteger)mode
                          usingDeck:(Deck *)deck;
 
 @property (nonatomic, readonly) NSInteger score;
+@property (nonatomic, strong, readonly) NSString* lastActionDescription;
 
 - (void) chooseCardAtIndex:(NSUInteger) index;
 
 - (Card *) cardAtIndex: (NSUInteger) index;
+
+- (void) redialWithDeck: (Deck *)deck;
+
+- (void) setMode:(NSInteger)mode;
 @end

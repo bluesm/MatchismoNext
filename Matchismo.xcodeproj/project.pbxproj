@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E527FDFE1859143800A15CD2 /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = E527FDFD1859143800A15CD2 /* Property List.plist */; };
 		E53B807E1849048400B18C4C /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = E53B807D1849048400B18C4C /* Deck.m */; };
 		E53B8081184905C400B18C4C /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = E53B8080184905C400B18C4C /* Card.m */; };
 		E53C5159184DDEE700F784D8 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = E53C5158184DDEE700F784D8 /* CardMatchingGame.m */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E527FDFD1859143800A15CD2 /* Property List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
 		E53B807C1849048400B18C4C /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
 		E53B807D1849048400B18C4C /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
 		E53B807F184905C400B18C4C /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		E5FF22561842A6BF00FDDFDB = {
 			isa = PBXGroup;
 			children = (
+				E527FDFD1859143800A15CD2 /* Property List.plist */,
 				E53C515B184DDF1500F784D8 /* Model */,
 				E5FF22681842A6C000FDDFDB /* Matchismo */,
 				E5FF22871842A6C000FDDFDB /* MatchismoTests */,
@@ -327,6 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E527FDFE1859143800A15CD2 /* Property List.plist in Resources */,
 				E5FF228C1842A6C000FDDFDB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
